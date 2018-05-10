@@ -1,0 +1,67 @@
+# {{ ansible_managed }}
+# /etc/nslcd.conf
+# nslcd configuration file. See nslcd.conf(5)
+# for details.
+
+# Runtime Options
+threads {{ pamd_ldap_thread }}
+uid {{ pamd_ldap_user }}
+gid {{ pamd_ldap_group }}
+
+#General Connection Options
+uri {{ pamd_ldap_uri }}
+base {{ pamd_ldap_base }}
+ldap_version {{ pamd_ldap_version }}
+{% if pamd_ldap_binddn is defined %}
+binddn {{ pamd_ldap_binddn }}
+bindpw {{ pamd_ldap_bindpw | mandatory }}
+{% endif %}
+
+{% if pamd_ldap_rootpwmoddn is defined %}
+rootpwmoddn {{ pamd_ldap_rootpwmoddn }}
+{% endif %}
+
+# Kerberos Authentication Options
+{% if pamd_ldap_krb5_ccname is defined %}
+krb5_ccname {{ pamd_ldap_krb5_ccname }}
+{% endif %}
+
+# Search/Mapping Options
+{% if pamd_ldap_base is defined %}
+base {{ pamd_ldap_base }}
+{% endif %}
+{% if pamd_ldap_base is defined %}
+base {{ pamd_ldap_base }}
+{% endif %}
+scope {{ pamd_ldap_scope }}
+deref {{ pamd_ldap_deref }}
+{% if pamd_ldap_referrals %}
+referrals yes
+{% else %}
+referrals no
+{% endif %}
+{% if pamd_ldap_filter is defined %}
+filter {{ pamd_ldap_filter }}
+{% endif %}
+{% if pamd_ldap_map is defined %}
+map {{ pamd_ldap_map }}
+{% endif %}
+
+# Timing/Reconnect Options
+bind_timelimit {{ pamd_ldap_bind_timelimit }}
+timelimit {{ pamd_ldap_timelimit }}
+{% if pamd_ldap_idle_timelimit is defined %}
+idle_timelimit {{ pamd_ldap_idle_timelimit }}
+{% endif %}
+reconnect_sleeptime: {{ pamd_ldap_reconnect_sleeptime }}
+reconnect_retrytime:{{ pamd_ldap_reconnect_retrytime }}
+
+# Ssl/Tls Options
+ssl {{ pamd_ldap_ssl }}
+{jjk
+tls_reqcert {{ pamd_ldap_tls_reqcert }}
+tls_cacertfile {{ pamd_ldap_tls_cacertfile }}
+
+# The search scope.
+#scope sub
+

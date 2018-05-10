@@ -1,0 +1,23 @@
+---
+- name: Update apt repositories cache
+  apt:
+    update_cache: yes
+  changed_when: false
+  when: ansible_pkg_mgr == "apt"
+
+- name: Install ldap pam module
+  apt:
+    name: libpam-ldapd
+  changed_when: false
+  when: ansible_pkg_mgr == "apt"
+
+- name: Set nslcd config
+  template:
+    src: templates/nslcd.conf.j2
+    dest: /etc/nslcd.conf
+
+- name: Set access.conf
+  template:
+    src: templates/access.conf.j2
+    dest: /etc/security/access.conf
+
