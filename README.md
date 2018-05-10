@@ -12,20 +12,21 @@ This role requires and apt based system
 
 ### General
 
-| Name                       | Required/Default                     | Description                                                        |
-|----------------------------|:------------------------------------:|--------------------------------------------------------------------|
-| `pamd_ldap_user`           | `nslcd`                              | User for running nslcd.                                            |
-| `pamd_ldap_group`          | `nslcd`                              | Group for running nslcd.                                           |
-| `pamd_ldap_uri`            | :heavy_check_mark:                   | The location at which the LDAP server(s) should be reachable,      |
-| `pamd_ldap_base`           | :heavy_check_mark:                   | The search base that will be used for all queries.                 |
-| `pamd_ldap_version`        | `3`                                  | The LDAP protocol version to use.                                  |
-| `pamd_ldap_binddn`         | :heavy_multiplication_x:             | The DN to bind with for normal lookups.                            |
-| `pamd_ldap_bindpw`         | :heavy_multiplication_x:             | The passwod for the DN to bind to.                                 |
-| `pamd_ldap_rootpwmoddn`    | :heavy_multiplication_x:             | The DN used for password modifications by root.                    |
-| `pamd_ldap_ssl`            | `true`                               | Enable or disable ssl usage.                                       |
-| `pamd_ldap_tls_reqcert`    | `never`                              | Specifies what checks to perform on a server-supplied certificate. |
-| `pamd_ldap_tls_cacertfile` | `/etc/ssl/certs/ca-certificates.crt` | Path to ca certificate to validate tls certificate.                |
-| `pamd_ldap_scope`          | `sub`                                | The search scope.                                                  |
+| Name                    | Required/Default                    | Description                                                                                                                                                                                               |
+|-------------------------|:-----------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `pamd_ldap_nslcd_conf`  | `{'uid': 'nslcd', 'gid': 'nslcd' }` | Dict containing the option key/value pairs. According to [the nslcd.conf man page](https://linux.die.net/man/5/nslcd.conf). If a value can be defined multiple times just use a list containg all values. |
+| `pamd_ldap_access_conf` | `[]`                                | List containing Dicts with access settings. According to [the access.conf man page](https://linux.die.net/man/5/access.conf).                                                                             |
+
+### `pamd_ldap_access_conf`
+Each list entry has to have following attributes
+| Name         | Required/Default   | Description                                                                                                                                                                                                                                                                                                                                              |
+|--------------|:------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `permission` | :heavy_check_mark: | Can be either a "+" character (plus) for access granted or a "-" character (minus) for access denied.                                                                                                                                                                                                                                                    |
+| `object`     | :heavy_check_mark: | The users/group field, should be a list of one or more login names, group names, or ALL (which always matches). To differentiate user entries from group entries, group entries should be written with brackets, e.g. (group).                                                                                                                           |
+| `origins`    | :heavy_check_mark: | The origins field, should be a list of one or more tty names (for non-networked logins), host names, domain names (begin with "."), host addresses, internet network numbers (end with "."), internet network addresses with network mask (where network mask can be a decimal number or an internet address also), ALL (which always matches) or LOCAL. |
+
+For more information please see [the access.conf man page](https://linux.die.net/man/5/access.conf).
+
 
 ## Example Playbook
 

@@ -1,2 +1,4 @@
 # {{ansible_managed}}
--:ALL EXCEPT (elasticsearch):ALL EXCEPT LOCAL
+{% for row in pamd_ldap_access_conf %}
+{{ row.permission }}:{{ row.objects }}:{{ row.origins }}
+{% endfor %}

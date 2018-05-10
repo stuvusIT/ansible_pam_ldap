@@ -1,16 +1,4 @@
 ---
-pamd_ldap_threads: 5
-pamd_ldap_user: nslcd
-pamd_ldap_group: nslcd
-pamd_ldap_ssl: on
-pamd_ldap_version: 3
-pamd_ldap_tls_reqcert: never
-pamd_ldap_cacertfile: /etc/ssl/certs/ca-certificates.crt
-pamd_ldap_scope: sub
-pamd_ldap_deref: never
-pamd_ldap_referrals: true
-pamd_ldap_bind_timelimit: 10
-pamd_ldap_timelimit: 0
-pamd_ldap_reconnect_sleeptime: 1
-pamd_ldap_reconnect_retrytime: 10
-
+pamd_ldap_nslcd_conf:
+  uid: nslcd
+  gid: nslcd
