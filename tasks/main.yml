@@ -15,6 +15,7 @@
   template:
     src: templates/nslcd.conf.j2
     dest: /etc/nslcd.conf
+  notify: Restart nslcd
 
 - name: Set access.conf
   template:
