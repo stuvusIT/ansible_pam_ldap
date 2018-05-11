@@ -34,9 +34,14 @@ For more information please see [the access.conf man page](https://linux.die.net
 - hosts: pamd_ldap
   roles:
     - role: pamd_ldap
-      pamd_ldap_mysql_password: password
-      pamd_ldap_default_password: password
-      pamd_ldap_default_email: admin@example.com
+      pamd_ldap_nslcd_conf:
+        uri: 
+          - "ldaps://ldap01.example.com:636"
+        base: "dc=wheel,dc=example,dc=com"
+      pamd_ldap_access_conf:
+        - permission: +
+          objects: (wheel)
+          origins: ALL
 ```
 
 ## License
