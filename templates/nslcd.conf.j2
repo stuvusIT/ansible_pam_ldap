@@ -3,7 +3,7 @@
 # nslcd configuration file. See nslcd.conf(5)
 # for details.
 {% for key, value in pamd_ldap_nslcd_conf.iteritems() %}
-{% if value is list %}
+{% if value | type_debug == "list" %}
 {% for v in value %}
 {{ key }} {{ v }}
 {% endfor %}
