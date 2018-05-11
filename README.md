@@ -1,4 +1,4 @@
-# pamd_ldap ansible
+# pam_ldap ansible
 
 This role setups and configures the pam ldap module
 
@@ -14,10 +14,10 @@ This role requires and apt based system
 
 | Name                    | Required/Default                    | Description                                                                                                                                                                                               |
 |-------------------------|:-----------------------------------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `pamd_ldap_nslcd_conf`  | `{'uid': 'nslcd', 'gid': 'nslcd' }` | Dict containing the option key/value pairs. According to [the nslcd.conf man page](https://linux.die.net/man/5/nslcd.conf). If a value can be defined multiple times just use a list containg all values. |
-| `pamd_ldap_access_conf` | `[]`                                | List containing Dicts with access settings. According to [the access.conf man page](https://linux.die.net/man/5/access.conf).                                                                             |
+| `pam_ldap_nslcd_conf`  | `{'uid': 'nslcd', 'gid': 'nslcd' }` | Dict containing the option key/value pairs. According to [the nslcd.conf man page](https://linux.die.net/man/5/nslcd.conf). If a value can be defined multiple times just use a list containg all values. |
+| `pam_ldap_access_conf` | `[]`                                | List containing Dicts with access settings. According to [the access.conf man page](https://linux.die.net/man/5/access.conf).                                                                             |
 
-### `pamd_ldap_access_conf`
+### `pam_ldap_access_conf`
 Each list entry has to have following attributes
 | Name         | Required/Default   | Description                                                                                                                                                                                                                                                                                                                                              |
 |--------------|:------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,14 +31,14 @@ For more information please see [the access.conf man page](https://linux.die.net
 ## Example Playbook
 
 ```yml
-- hosts: pamd_ldap
+- hosts: pam_ldap
   roles:
-    - role: pamd_ldap
-      pamd_ldap_nslcd_conf:
+    - role: pam_ldap
+      pam_ldap_nslcd_conf:
         uri: 
           - "ldaps://ldap01.example.com:636"
         base: "dc=wheel,dc=example,dc=com"
-      pamd_ldap_access_conf:
+      pam_ldap_access_conf:
         - permission: +
           objects: (wheel)
           origins: ALL

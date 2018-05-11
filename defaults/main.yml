@@ -1,5 +1,5 @@
 ---
-pamd_ldap_nslcd_conf:
+pam_ldap_nslcd_conf:
   uid: nslcd
   gid: nslcd
-pamd_ldap_access_conf: []
+pam_ldap_access_conf: []
