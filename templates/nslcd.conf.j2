@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+# /etc/nslcd.conf
+# nslcd configuration file. See nslcd.conf(5)
+# for details.
+{% for key, value in pam_ldap_nslcd_conf.iteritems() %}
+{% if value | type_debug == "list" %}
+{% for v in value %}
+{{ key }} {{ v }}
+{% endfor %}
+{% else %}
+{{ key }} {{ value }}
+{% endif %}
+
+{% endfor %}

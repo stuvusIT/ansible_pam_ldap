@@ -1,0 +1,4 @@
+# {{ansible_managed}}
+{% for row in pam_ldap_access_conf %}
+{{ row.permission }}:{{ row.objects }}:{{ row.origins }}
+{% endfor %}

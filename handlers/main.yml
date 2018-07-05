@@ -1,0 +1,6 @@
+---
+- name: Restart nslcd
+  service:
+    name: nslcd
+    state: restarted
+    enabled: yes
