@@ -19,6 +19,7 @@ This role requires and apt based system
 
 ### `pam_ldap_access_conf`
 Each list entry has to have following attributes
+
 | Name         | Required/Default   | Description                                                                                                                                                                                                                                                                                                                                              |
 |--------------|:------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `permission` | :heavy_check_mark: | Can be either a "+" character (plus) for access granted or a "-" character (minus) for access denied.                                                                                                                                                                                                                                                    |
