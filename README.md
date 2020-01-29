@@ -36,7 +36,7 @@ For more information please see [the access.conf man page](https://linux.die.net
   roles:
     - role: pam_ldap
       pam_ldap_nslcd_conf:
-        uri: 
+        uri:
           - "ldaps://ldap01.example.com:636"
         base: "dc=wheel,dc=example,dc=com"
       pam_ldap_access_conf:
